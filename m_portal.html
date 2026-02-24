@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Only For M</title>
+
+<link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Poppins:wght@300;500&display=swap" rel="stylesheet">
+
+<style>
+body{
+    margin:0;
+    font-family:'Poppins',sans-serif;
+    height:100vh;
+    background:linear-gradient(135deg,#0f0c29,#302b63,#24243e);
+    display:flex;
+    justify-content:center;
+    align-items:center;
+    overflow:hidden;
+    color:white;
+}
+
+/* CARD STYLE */
+.card{
+    background:rgba(0,0,0,0.6);
+    backdrop-filter:blur(15px);
+    padding:35px;
+    border-radius:20px;
+    width:90%;
+    max-width:420px;
+    text-align:center;
+    box-shadow:0 0 30px rgba(0,0,0,0.4);
+    transition:all 0.8s ease;
+}
+
+/* INPUT FIX FOR MOBILE */
+input{
+    width:100%;
+    padding:14px;
+    border-radius:12px;
+    border:none;
+    outline:none;
+    font-size:16px;
+    text-align:center;
+    margin-top:15px;
+}
+
+/* BUTTON */
+button{
+    margin-top:18px;
+    padding:12px 30px;
+    border:none;
+    border-radius:25px;
+    font-size:16px;
+    cursor:pointer;
+    transition:0.3s;
+}
+
+.unlock{
+    background:#ff4d6d;
+    color:white;
+}
+
+.unlock:active{
+    transform:scale(0.95);
+}
+
+.hidden{
+    display:none;
+}
+
+h1{
+    font-family:'Great Vibes',cursive;
+    font-size:48px;
+    margin-bottom:10px;
+}
+
+.message{
+    font-size:17px;
+    line-height:1.7;
+    margin-top:15px;
+}
+
+img{
+    width:200px;
+    border-radius:15px;
+    margin-bottom:15px;
+}
+
+.buttons{
+    margin-top:20px;
+}
+
+.yes{
+    background:#ff4d6d;
+    color:white;
+    margin:10px;
+}
+
+.no{
+    background:#6c757d;
+    color:white;
+    margin:10px;
+}
+
+.fadeOut{
+    opacity:0;
+    transform:scale(0.9);
+}
+
+.fadeIn{
+    animation:fadeIn 1s ease forwards;
+}
+
+@keyframes fadeIn{
+    from{opacity:0; transform:translateY(40px);}
+    to{opacity:1; transform:translateY(0);}
+}
+</style>
+</head>
+<body>
+
+<!-- LOCK PAGE -->
+<div class="card" id="lockCard">
+    <h2>🔒 Only for M</h2>
+    <p>Hint: Your birthday is the password to unlock this.</p>
+    <input type="text" id="passInput" placeholder="Enter password (DD/MM/YYYY)" autocomplete="off">
+    <button class="unlock" id="unlockBtn">Unlock</button>
+    <p id="error" style="color:#ff6b6b;"></p>
+</div>
+
+<!-- MESSAGE PAGE -->
+<div class="card hidden" id="messageCard">
+    <img src="https://images.unsplash.com/photo-1509042239860-f550ce710b93">
+    <h1>For M</h1>
+
+    <div class="message">
+        I didn’t want to say this in a loud or awkward way,  
+        so I made something different instead.  
+
+        Somewhere between normal days, simple moments,
+        and small conversations, you slowly became
+        someone my mind notices more than usual.  
+
+        Not suddenly. Not dramatically.  
+        Just quietly and naturally.  
+
+        There is a calm energy in your presence
+        that stays even after you leave,
+        and that is honestly rare.  
+
+        This isn’t meant to pressure you,
+        or make anything uncomfortable.  
+
+        It’s just a genuine truth,
+        written in a simple way.  
+
+        I like you, M.  
+        Would you like to know me a little more?
+    </div>
+
+    <div class="buttons">
+        <button class="yes" id="yesBtn">Yes 💖</button>
+        <button class="no" id="noBtn">No 🙂</button>
+    </div>
+</div>
+
+<script>
+// FIXED MOBILE SAFE SCRIPT
+document.addEventListener("DOMContentLoaded", function() {
+
+    const unlockBtn = document.getElementById("unlockBtn");
+    const passInput = document.getElementById("passInput");
+    const lockCard = document.getElementById("lockCard");
+    const messageCard = document.getElementById("messageCard");
+    const error = document.getElementById("error");
+
+    unlockBtn.addEventListener("click", function() {
+        const value = passInput.value.trim();
+
+        if(value === "19/08/2007"){
+            error.textContent = "";
+            lockCard.classList.add("fadeOut");
+
+            setTimeout(() => {
+                lockCard.classList.add("hidden");
+                messageCard.classList.remove("hidden");
+                messageCard.classList.add("fadeIn");
+            }, 700);
+
+        } else {
+            error.textContent = "Wrong password. Try again.";
+        }
+    });
+
+    // ENTER KEY SUPPORT (Important fix)
+    passInput.addEventListener("keypress", function(e){
+        if(e.key === "Enter"){
+            unlockBtn.click();
+        }
+    });
+
+    // GOOGLE FORM LINK (YOUR LINK ADDED)
+    const formLink = "https://docs.google.com/forms/d/e/1FAIpQLSds3QQVPVvqKPLmO204p0zBXtLdaYNO6q7tMS_NBbuc0wue3A/viewform?usp=pp_url";
+
+    document.getElementById("yesBtn").addEventListener("click", function(){
+        window.open(formLink, "_blank");
+    });
+
+    document.getElementById("noBtn").addEventListener("click", function(){
+        window.open(formLink, "_blank");
+    });
+
+});
+</script>
+
+</body>
+</html>
